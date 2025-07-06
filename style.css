@@ -1,0 +1,1144 @@
+/* CSS Variables */
+:root{
+  --ease-elastic: linear(0, 0.55 7.5%, 0.85 12%, 0.95 14%, 1.03 16.5%, 1.09 20%, 1.13 22%, 1.14 23%, 1.15 24.5%, 1.15 26%, 1.13 28%, 1.11 31%, 1.05 39%, 1.02 43%, 0.99 47%, 0.98 52%, 0.97 59%, 1.002 81%, 1);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    background-image: url('https://www.publicdomainpictures.net/pictures/40000/velka/path-in-the-woods-13615460746I3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 80px; /* Add space for fixed footer */
+    overflow-x: hidden; /* Prevent horizontal scrolling from animated dots */
+}
+
+/* Cursor animation dots */
+.dot {
+  position: absolute;
+  background-color: #D3DCCD;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  pointer-events: none; 
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    width: 100%; /* Full width instead of max-width constraint */
+    margin: 0;
+    padding: 0 1rem; /* Only side padding for page edges */
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    pointer-events: none; /* Allow clicking through to elements behind */
+}
+
+/* Current time styles */
+[data-current-time] {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Progress counter styles */
+.progress-nr {
+  margin: 0px;
+  font-size: 2.5em;
+  font-weight: 500;
+  line-height: 1;
+  color: white;
+  position: relative;
+  z-index: 1;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  width: 3ch; /* Fixed width for 3 characters (000) */
+  text-align: right;
+  flex-shrink: 0; /* Prevent the element from shrinking */
+}
+
+/* Main content styles */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: #A8FF51;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 0; /* Let the spacer handle the gap */
+}
+
+/* Special styling for main section containing anime slider */
+.anime-slider-main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #A8FF51;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 0;
+    border: 3px solid #00ff00 !important; /* Green border for testing */
+}
+
+/* Content box styles - now with dots grid styling */
+.content-box {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    /* Calculate height to match the slider area content:
+       - Falling text paragraph: ~4.5rem (1.5rem font * 1.4 line-height + 3rem bottom margin + 1rem top margin)
+       - Slider cards: ~25rem (based on aspect ratio and responsive design)
+       - Slider controls: ~3rem (button height + margins)
+       - Additional spacing: ~2rem
+       Total: ~34.5rem */
+    min-height: 34.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.1); /* Added border styling */
+}
+
+/* Dots grid specific styling */
+.section-dots {
+    background-color: #08342a;
+    color: #efeeec;
+    justify-content: center;
+    align-items: stretch;
+    padding: 4em;
+    position: relative;
+    overflow: hidden;
+    /* Ensure border and box-shadow from content-box are maintained */
+    border: 2px solid rgba(255,255,255,0.3) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    border-radius: 8px !important;
+}
+
+.section-dots__wrap {
+    width: 100%;
+    min-height: 30em;
+    position: relative;
+}
+
+.dots-container {
+    gap: 2em;
+    pointer-events: none;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    inset: 0;
+}
+
+.dot {
+    will-change: transform, background-color;
+    transform-origin: center;
+    background-color: #245e51;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    transform: translate(0);
+}
+
+.osmo-icon__link {
+    color: currentColor;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5; /* Lower z-index than buttons */
+    opacity: 0.3; /* Make it more subtle */
+}
+
+.osmo-icon-svg {
+    width: 12em; /* Slightly larger to fill background */
+}
+
+/* Center buttons styling with bouncing animation */
+.center-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.btn-group {
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-bounce {
+    color: #113d28;
+    padding-left: 2em;
+    padding-right: 2em;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    pointer-events: auto;
+    white-space: nowrap;
+    min-width: 8em;
+    text-align: center;
+    display: block;
+}
+
+.btn-bounce.is--secondary {
+    color: #efeeec;
+}
+
+.btn-bounce-bg {
+    z-index: 0;
+    background-color: #A8FF51;
+    border-radius: 100em;
+    position: absolute;
+    inset: 0%;
+}
+
+.btn-bounce-bg.is--secondary {
+    background-color: #245e5126;
+    border: 2px solid #A8FF51;
+}
+
+.btn-bounce-text {
+    z-index: 1;
+    display: block;
+    position: relative;
+}
+
+.btn-bounce-text__wrap {
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    overflow: hidden;
+}
+
+/* Only apply hover animations if they are actually supported */
+@media (hover:hover) and (pointer:fine){
+    .btn-bounce,
+    .btn-bounce-text,
+    .btn-bounce-text__wrap{
+        transition: transform 0.65s var(--ease-elastic);
+    }
+    
+    /* Fake a duplicate text element using text shadow without blur  */
+    /* We save the distance in a variable for easy use in the CSS animation */
+    .btn-bounce-text{
+        --text-duplicate-distance: 3em;
+        text-shadow: 0px var(--text-duplicate-distance) currentColor;
+    }
+    
+    /* Scale down the button and rotate it slightly */
+    .btn-bounce:hover { transform: scale(0.92) rotate(-3deg); }
+    
+    /* Rotate the text wrapper in the opposite direction so it appears straight */
+    .btn-bounce:hover .btn-bounce-text__wrap{ transform: rotate(3deg); }
+    
+    /* Move up the text span to reveal its text-shadow */
+    .btn-bounce:hover .btn-bounce-text{ transform: translate(0px, calc(-1 * var(--text-duplicate-distance))); }
+}
+
+/* Responsive adjustments for content box to match slider behavior */
+@media screen and (max-width: 991px) {
+    .content-box {
+        min-height: 30rem; /* Reduced height for tablet view */
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .content-box {
+        min-height: 25rem; /* Further reduced height for mobile view */
+        padding: 1rem; /* Match mobile padding */
+    }
+}
+
+/* Responsive adjustments for center buttons */
+@media screen and (max-width: 991px) {
+    .btn-bounce {
+        font-size: clamp(0.8rem, 3vw, 1.1rem);
+        padding-left: 1.3em;
+        padding-right: 1.3em;
+        min-width: 7em;
+    }
+    
+    .btn-group {
+        gap: 0.3em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .btn-bounce {
+        font-size: clamp(0.7rem, 4vw, 1rem);
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        min-width: 6em;
+    }
+    
+    .btn-group {
+        gap: 0.2em;
+    }
+    
+    .osmo-icon-svg {
+        width: 10em; /* Smaller on mobile */
+    }
+}
+
+/* Main content paragraph styling */
+main > p, .content-box > p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Dark mode styling for main paragraph and content box */
+[data-theme-status="dark"] main {
+    background-color: #A8FF51;
+}
+
+[data-theme-status="dark"] .content-box:not(.section-dots) {
+    background-color: #2a2a2a;
+}
+
+[data-theme-status="dark"] main > p,
+[data-theme-status="dark"] .content-box > p {
+    color: #e0e0e0;
+}
+
+/* Dark mode for dots section - keep original colors */
+[data-theme-status="dark"] .section-dots {
+    background-color: #08342a;
+    color: #efeeec;
+}
+
+/* Dark mode styling for progress counter */
+[data-theme-status="dark"] .progress-nr {
+  color: #e0e0e0;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 999;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* Marquee CSS Styles */
+.marquee-css {
+  color: #efeeec;
+  background-color: #333;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: fixed;
+  overflow: hidden;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.marquee-css__list {
+  flex: none;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.marquee-css__item {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  flex: 0;
+  align-items: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
+  display: flex;
+}
+
+.marquee-css__item-p {
+  white-space: nowrap;
+  margin-bottom: 0;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.marquee-css__item-svg {
+  width: 1em;
+}
+
+/* CSS Keyframe Animation */
+@keyframes translateX { 
+	to {
+    transform: translateX(-100%);
+  }
+}
+
+[data-css-marquee-list] {
+  animation: translateX 30s linear;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
+
+/* Dark mode styling for marquee */
+[data-theme-status="dark"] .marquee-css {
+  background-color: #222;
+}
+
+[data-theme-status="dark"] footer {
+  background-color: #222;
+}
+
+/* GSAP Slider Styles */
+.gsap-slider {
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background-color: #08342a;
+  color: #efeeec;
+  padding: 4em;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 0; /* Remove any existing margin to let spacer handle it */
+}
+
+.gsap-slider__collection {
+  width: 100%;
+  max-width: 72em;
+}
+
+.gsap-slider__list {
+  -webkit-user-select: none;
+  user-select: none;
+  will-change: transform;
+  touch-action: pan-y;
+  backface-visibility: hidden;
+  display: flex;
+}
+
+.gsap-slider__item {
+  width: calc(((100% - 1px)  - (var(--slider-spv)  - 1) * var(--slider-gap)) / var(--slider-spv));
+  margin-right: var(--slider-gap);
+  flex: none;
+}
+
+.demo-card {
+  background-color: #2c2c2c;
+  border: 1px solid #2c2c2c;
+  border-radius: 1.5em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.before__125 {
+  padding-top: 125%;
+}
+
+.osmo-icon-svg {
+  opacity: .1;
+  width: 40%;
+  position: absolute;
+}
+
+.demo-card__tag {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+}
+
+.demo-card__tag-p {
+  margin-bottom: 0;
+  font-size: 2em;
+  line-height: 1;
+  color: white;
+}
+
+/* Movie poster styling */
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 1.5em;
+}
+
+/* Setup */
+[data-gsap-slider-init] {
+  --slider-status: on; /* Turn slider on/off */
+  --slider-spv: 3; /* Slides per view */ 
+  --slider-gap: 1.5em; /* Slides Gap */
+}
+
+@media screen and (max-width: 991px) {
+   [data-gsap-slider-init] {
+    --slider-status: on; /* Turn slider on/off */
+    --slider-spv: 2.25; /* Slides per view */ 
+    --slider-gap: 1.5em; /* Slides Gap */
+  } 
+}
+
+@media screen and (max-width: 767px) {
+  [data-gsap-slider-init] { 
+    --slider-status: on; /* Turn slider on/off */
+    --slider-spv: 1.15; /* Slides per view */ 
+    --slider-gap: 1em; /* Gap */
+  }
+}
+
+[data-gsap-slider-item]:last-child {
+  margin-right: 0;
+}
+
+/* Controls */
+.gsap-slider__controls {
+  grid-column-gap: .5em;
+  grid-row-gap: .5em;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.gsap-slider__control {
+  color: #efeeec;
+  background-color: #131313;
+  border: 1px solid #2c2c2c;
+  border-radius: .25em;
+  padding: .75em 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.gsap-slider__control:hover {
+  background-color: #2c2c2c;
+}
+
+[data-gsap-slider-status="not-active"] [data-gsap-slider-controls] {
+  display: none;
+}
+
+[data-gsap-slider-control-status="not-active"] { 
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Dark/Light mode toggle button styles */
+.btn-darklight {
+  color: #131313;
+  cursor: pointer;
+  background-color: #efeeec;
+  border: 0 solid transparent;
+  border-radius: .25em;
+  outline: 0 transparent;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.125em 0 .75em;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-darklight__icon {
+  width: 1.25em;
+  height: 100%;
+  margin-right: .25em;
+  position: relative;
+}
+
+.btn-darklight__word {
+  padding-right: .25em;
+  position: relative;
+}
+
+.btn-darklight__word-p {
+  margin-top: .05em;
+  margin-bottom: 0;
+  line-height: 1.2;
+  position: relative;
+}
+
+.btn-darklight__word-p.is--absolute {
+  opacity: 0;
+  letter-spacing: .025em;
+  position: absolute;
+  top: 0;
+}
+
+.btn-darklight__icon-box {
+  height: 100%;
+  padding-top: .66em;
+  padding-bottom: .66em;
+  display: flex;
+  position: relative;
+}
+
+.btn-darklight__icon-box.is--absolute {
+  position: absolute;
+}
+
+/* Background theme transitions */
+[data-theme-status] {
+  transition: background-color 0.4s cubic-bezier(0.35, 1, 0.6, 1);
+}
+
+[data-theme-status="dark"] {
+  background-color: #070915 !important;
+}
+
+[data-theme-status="dark"] body {
+  background-color: #0a0b1a;
+  color: #e0e0e0;
+}
+
+[data-theme-status="dark"] header {
+  background-color: #1a1b2e;
+}
+
+[data-theme-status="dark"] main, 
+[data-theme-status="dark"] footer {
+  background-color: #0a0b1a;
+  color: #e0e0e0;
+}
+
+/* Button Word transitions */
+[data-theme-status="dark"] .btn-darklight .btn-darklight__word .btn-darklight__word-p,
+[data-theme-status="light"] .btn-darklight .btn-darklight__word .btn-darklight__word-p.is--absolute{
+  opacity: 0;
+}
+
+[data-theme-status="light"] .btn-darklight .btn-darklight__word .btn-darklight__word-p,
+[data-theme-status="dark"] .btn-darklight .btn-darklight__word .btn-darklight__word-p.is--absolute {
+  opacity: 1;
+}
+
+/* Button Icon transitions */
+.btn-darklight .btn-darklight__icon-box{
+  transition: transform 0.8s cubic-bezier(0.35, 1.5, 0.6, 1);
+  transform: translateY(0%) rotate(-90deg);
+}
+
+[data-theme-status="dark"] .btn-darklight .btn-darklight__icon-box{
+  transform: translateY(-100%) rotate(0.001deg);
+}
+
+/* Update header layout for the toggle button */
+.header-content {
+    justify-content: space-between;
+}
+
+.header-content > h1 {
+    /* Title remains centered with absolute positioning */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex: 1;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    main, .content-box {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    header h1 {
+        order: -1;
+        margin-bottom: 0.5rem;
+    }
+    
+    [data-current-time] {
+        font-size: 0.9rem;
+    }
+    
+    .progress-nr {
+        font-size: 2em;
+        order: 2;
+    }
+    
+    .header-content > .btn-darklight {
+        order: 1;
+        align-self: flex-end;
+    }
+}
+
+/* Custom Cursor Styles */
+.cursor {
+  z-index: 10000;
+  pointer-events: none;
+  position: fixed;
+  inset: 0% auto auto 0%;
+}
+
+.cursor-inner {
+  width: 2em;
+}
+
+.cursor-inner.pointer {
+  width: 2.5em;
+}
+
+/* Hide browser default cursor */
+html {
+  cursor: none !important;
+}
+
+/* Hide default cursor on interactive elements */
+a, button, [data-cursor] {
+  cursor: none !important;
+}
+
+/* Hide custom cursor and pointer cursor */
+.cursor,
+.cursor-inner.pointer{ 
+  display: none;
+}
+
+/* Show custom cursor only when user is on the site */
+html:hover .cursor{
+  display: block;
+}
+
+/* Replace normal cursor with pointer on hover of link/button/custom element */
+body:has( a:hover) .cursor-inner.pointer,
+body:has( button:hover) .cursor-inner.pointer,
+body:has( [data-cursor]:hover) .cursor-inner.pointer{
+  display: block;
+}
+body:has( a:hover) .cursor-inner.regular,
+body:has( button:hover) .cursor-inner.regular,
+body:has( [data-cursor]:hover) .cursor-inner.regular{
+  display: none;
+}
+
+/* Hide custom cursor on touch screens */
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}
+
+/* Dark mode for slider - keep same colors as grid */
+[data-theme-status="dark"] .gsap-slider {
+    background-color: #08342a;
+    color: #efeeec;
+}
+
+/* Comprehensive cursor fix - ensure no standard cursor appears anywhere */
+
+/* Apply cursor: none to all slider elements */
+.gsap-slider,
+.gsap-slider__collection,
+.gsap-slider__list,
+.gsap-slider__item,
+.demo-card,
+.movie-poster,
+.before__125 {
+    cursor: none !important;
+}
+
+/* Apply cursor: none to all main content containers */
+main,
+.content-box,
+section,
+div,
+img,
+svg,
+p {
+    cursor: none !important;
+}
+
+/* Apply cursor: none to all potential gap areas */
+.gsap-slider *,
+.content-box *,
+main *,
+section * {
+    cursor: none !important;
+}
+
+/* Ensure no element can override cursor: none */
+* {
+    cursor: none !important;
+}
+
+/* Only allow custom cursor on interactive elements */
+a, button, [data-cursor], 
+input, textarea, select,
+[role="button"], [tabindex] {
+    cursor: none !important;
+}
+
+/* Fix for any pseudo-elements that might show cursor */
+*::before, *::after {
+    cursor: none !important;
+}
+
+/* Specific fix for slider gaps and spaces */
+.gsap-slider__item + .gsap-slider__item {
+    cursor: none !important;
+}
+
+/* Fix for any hover states that might revert cursor */
+*:hover {
+    cursor: none !important;
+}
+
+/* Override any external library cursor styles */
+[class*="gsap"],
+[data-gsap*=""],
+[class*="slider"],
+[data-slider*=""] {
+    cursor: none !important;
+}
+
+/* Ensure body and html maintain cursor: none */
+html, body {
+    cursor: none !important;
+}
+
+/* Special fix for touch devices - prevent any cursor display */
+@media (hover: none) and (pointer: coarse) {
+    * {
+        cursor: none !important;
+    }
+}
+
+/* Calculator Styles */
+.calculator-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #A8FF51;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: none !important;
+    margin-top: 0; /* Remove any existing margin to let spacer handle it */
+    text-align: center;
+}
+
+.calculator-title {
+    color: #333;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    cursor: none !important;
+}
+
+.calculator-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.calculator-wrapper {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 2px solid #A8FF51;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 300px;
+    width: 100%;
+    cursor: none !important;
+}
+
+.calculator-section .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: none !important;
+}
+
+#container {
+    width: 220px;
+    padding: 8px 8px 20px 8px;
+    margin: 0 auto;
+    background-color: #ABABAB;
+    border-radius: 4px;
+    border-top: 2px solid #FFF;
+    border-right: 2px solid #FFF;
+    border-bottom: 2px solid #C1C1C1;
+    border-left: 2px solid #C1C1C1;
+    box-shadow: -3px 3px 7px rgba(0, 0, 0, .6), inset -100px 0px 100px rgba(255, 255, 255, .5);
+    cursor: none !important;
+}
+
+#container form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2px;
+    align-items: center;
+}
+
+#display {
+    grid-column: 1 / -1;
+    display: block;
+    margin: 15px auto;
+    height: 42px;
+    width: calc(100% - 20px);
+    padding: 0 10px;
+    border-radius: 4px;
+    border-top: 2px solid #C1C1C1;
+    border-right: 2px solid #C1C1C1;
+    border-bottom: 2px solid #FFF;
+    border-left: 2px solid #FFF;
+    background-color: #FFF;
+    box-shadow: inset 0px 0px 10px #030303, inset 0px -20px 1px rgba(150, 150, 150, .2);
+    font-size: 28px;
+    color: #666;
+    text-align: right;
+    font-weight: 400;
+    cursor: none !important;
+}
+
+.button {
+    display: block;
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: none !important;
+    margin: 0;
+}
+
+.mathButtons {
+    color: #FFF;
+    text-shadow: -1px -1px 0px #44006F;
+    background-color: #434343;
+    border-top: 2px solid #C1C1C1;
+    border-right: 2px solid #C1C1C1;
+    border-bottom: 2px solid #181818;
+    border-left: 2px solid #181818;
+    box-shadow: 0px 0px 2px #030303, inset 0px -20px 1px #2E2E2E;
+    cursor: none !important;
+}
+
+.digits {
+    color: #181818;
+    text-shadow: 1px 1px 0px #FFF;
+    background-color: #EBEBEB;
+    border-top: 2px solid #FFF;
+    border-right: 2px solid #FFF;
+    border-bottom: 2px solid #C1C1C1;
+    border-left: 2px solid #C1C1C1;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px #030303, inset 0px -20px 1px #DCDCDC;
+    cursor: none !important;
+}
+
+.digits:hover,
+.mathButtons:hover,
+#clearButton:hover {
+    background-color: #FFBA75;
+    box-shadow: 0px 0px 2px #FFBA75, inset 0px -20px 1px #FF8000;
+    border-top: 2px solid #FFF;
+    border-right: 2px solid #FFF;
+    border-bottom: 2px solid #AE5700;
+    border-left: 2px solid #AE5700;
+    cursor: none !important;
+}
+
+#clearButton {
+    color: #FFF;
+    text-shadow: -1px -1px 0px #44006F;
+    background-color: #D20000;
+    border-top: 2px solid #FF8484;
+    border-right: 2px solid #FF8484;
+    border-bottom: 2px solid #800000;
+    border-left: 2px solid #800000;
+    box-shadow: 0px 0px 2px #030303, inset 0px -20px 1px #B00000;
+    cursor: none !important;
+}
+
+/* Responsive calculator styles */
+@media screen and (max-width: 768px) {
+    .calculator-section {
+        padding: 2rem 1rem;
+    }
+    
+    .calculator-wrapper {
+        padding: 1.5rem;
+        max-width: 280px;
+    }
+    
+    .calculator-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    #container {
+        width: 200px;
+        padding: 6px 6px 18px 6px;
+    }
+    
+    #display {
+        height: 38px;
+        font-size: 24px;
+    }
+    
+    .button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .calculator-wrapper {
+        padding: 1rem;
+        max-width: 260px;
+    }
+    
+    .calculator-title {
+        font-size: 1.1rem;
+    }
+    
+    #container {
+        width: 180px;
+        padding: 4px 4px 16px 4px;
+    }
+    
+    #display {
+        height: 34px;
+        font-size: 20px;
+    }
+    
+    .button {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+}
+
+/* Slider title styling */
+.slider-title {
+    color: #efeeec;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 2rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Force borders on major sections - matching the reference style */
+.content-box.section-dots {
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    border-radius: 8px !important;
+    margin: 2rem auto !important;
+}
+
+.anime-slider-main {
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    border-radius: 8px !important;
+    margin: 2rem auto !important;
+}
+
+/* Dark mode styling for calculator section */
+[data-theme-status="dark"] .calculator-section {
+    background-color: #2a2a2a;
+}
+
+[data-theme-status="dark"] .calculator-title {
+    color: #e0e0e0;
+}

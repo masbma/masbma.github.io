@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Physics2DPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+</head>
+<body data-theme-status="light">
+    <div class="cursor">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 25 38" fill="none" class="cursor-inner regular">
+        <path d="M2.5 0H0.5V34H4.5V32H6.5V30H8.5V28H10.5V32H12.5V36H14.5V38H18.5V36H20.5V32H18.5V28H16.5V26H24.5V22H22.5V20H20.5V18H18.5V16H16.5V14H14.5V12H12.5V10H10.5V8H8.5V6H6.5V4H4.5V2H2.5V0Z" fill="#131313"></path>
+        <path d="M4.5 4H2.5V32H4.5V30H6.5V28H8.5V26H10.5V28H12.5V32H14.5V36H18.5V32H16.5V28H14.5V24H22.5V22H20.5V20H18.5V18H16.5V16H14.5V14H12.5V12H10.5V10H8.5V8H6.5V6H4.5V4Z" fill="#EFEEEC"></path>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 30 38" fill="none" class="cursor-inner pointer">
+        <path d="M12.3529 0H8.82353V1.72727L7.05882 1.72727V17.2727H5.29412L5.29412 15.5455H0V20.7273H1.76471V22.4545H3.52941V25.9091H5.29412V29.3636H7.05882V32.8182H8.82353V38H26.4706V32.8182H28.2353V27.6364H30V15.5455H28.2353V13.8182H26.4706V12.0909H22.9412L22.9412 10.3636H17.6471V8.63636H14.1176V1.72727L12.3529 1.72727V0Z" fill="#131313"></path>
+        <path d="M8.82347 1.72729V20.7273H7.05877V19H5.29406V17.2727H1.76465V20.7273H3.52935V22.4546H5.29406V25.9091H7.05877V29.3637H8.82347V32.8182H10.5882V36.2727H24.7058V32.8182H26.4705V27.6364H28.2352V15.5455H26.4705V13.8182H24.7058V19H22.9411V12.0909H19.4117V17.2727H17.647V10.3637H14.1176V17.2727H12.3529V1.72729H8.82347Z" fill="#EFEEEC"></path>
+      </svg>
+    </div>
+    <header>
+        <div class="header-content">
+            <p data-current-time>
+                <span data-current-time-hours>9</span>:
+                <span data-current-time-minutes>00</span>:
+                <span data-current-time-seconds>24</span>
+            </p>
+            <h1>Welcome to My Website</h1>
+            <div class="header-right">
+                <button data-theme-toggle="" class="btn-darklight">
+                  <div class="btn-darklight__icon">
+                    <div class="btn-darklight__icon-box">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none"><path d="M15.5355 8.46447C17.4882 10.4171 17.4882 13.5829 15.5355 15.5355C13.5829 17.4882 10.4171 17.4882 8.46447 15.5355C6.51184 13.5829 6.51184 10.4171 8.46447 8.46447C10.4171 6.51184 13.5829 6.51184 15.5355 8.46447Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.3599 5.63999L19.0699 4.92999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.93018 19.07L5.64018 18.36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 12H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.3599 18.36L19.0699 19.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.93018 4.92999L5.64018 5.63999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                    <div class="btn-darklight__icon-box is--absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none"><path d="M18.395 13.027C18.725 12.872 19.077 13.197 18.985 13.55C18.671 14.752 18.054 15.896 17.104 16.846C14.283 19.667 9.77001 19.726 7.02201 16.978C4.27401 14.23 4.33401 9.71601 7.15501 6.89501C8.10501 5.94501 9.24801 5.32801 10.451 5.01401C10.804 4.92201 11.128 5.27401 10.974 5.60401C9.97201 7.74301 10.301 10.305 11.998 12.002C13.694 13.7 16.256 14.029 18.395 13.027Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                  </div>
+                  <div class="btn-darklight__word">
+                    <p class="btn-darklight__word-p">Dark</p>
+                    <p class="btn-darklight__word-p is--absolute">Light</p>
+                  </div>
+                  <p class="btn-darklight__word-p">mode</p>
+                </button>
+                <p data-progress-nr="" class="progress-nr">00</p>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <p>Here are some of my favourite movies:</p>
+        
+        <div aria-label="Slider" data-gsap-slider-init="" role="region" aria-roledescription="carousel" class="gsap-slider">
+          <div data-gsap-slider-collection="" class="gsap-slider__collection">
+            <div data-gsap-slider-list="" class="gsap-slider__list">
+              <!-- Slide 1 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt2076822/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BM2MxZGI0ZGMtYjAyOS00MTgwLThlYzItOTcwZjBiMWMxZTc5XkEyXkFqcGc@._V1_QL75_UX400.5_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 2 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0133093/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BNThiYTQzOTUtNmFjYy00OWEwLTg2NWUtMmM3NGE0YjFjOWRjXkEyXkFqcGc@._V1_QL75_UX232.5_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 3 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt1375666/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_QL75_UX283.5_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 4 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0137523/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BNTA0ODYzYTAtNjMyOC00NmMwLWE5NzUtODRiNGExYjRlMzRjXkEyXkFqcGc@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 5 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0317248/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMjA4ODQ3ODkzNV5BMl5BanBnXkFtZTYwOTc4NDI3._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 6 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0482571/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTM3MzQ5MjQ5OF5BMl5BanBnXkFtZTcwMTQ3NzMzMw@@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 7 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt1675434/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTYxNDA3MDQwNl5BMl5BanBnXkFtZTcwNTU4Mzc1Nw@@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 8 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0120689/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 9 -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0253474/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMjEwNmEwYjgtNTk3ZC00NjljLTg5ZDctZTY3ZGQwZjRkZmQxXkEyXkFqcGc@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Etc. -->
+            </div>
+          </div>
+          <div data-gsap-slider-controls="" class="gsap-slider__controls">
+            <button data-gsap-slider-control="prev" class="gsap-slider__control">Prev</button>
+            <button data-gsap-slider-control="next" class="gsap-slider__control">Next</button>
+          </div>
+        </div>
+    </main>
+    
+    <section class="content-box section-dots">
+        <div class="section-dots__wrap">
+            <div data-dots-container-init="" class="dots-container">
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="center-buttons">
+            <div class="btn-group">
+                <div class="btn-group__col">
+                    <a href="#" class="btn-bounce center-btn">
+                        <div class="btn-bounce-bg"></div>
+                        <div class="btn-bounce-text__wrap">
+                            <span class="btn-bounce-text">Discover Music</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="btn-group__col">
+                    <a href="#" class="btn-bounce is--secondary center-btn">
+                        <div class="btn-bounce-bg is--secondary"></div>
+                        <div class="btn-bounce-text__wrap">
+                            <span class="btn-bounce-text">Discover Anime</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <a href="https://osmo.supply/" target="_blank" class="osmo-icon__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 160 160" fill="none" class="osmo-icon-svg"><path d="M94.8284 53.8578C92.3086 56.3776 88 54.593 88 51.0294V0H72V59.9999C72 66.6273 66.6274 71.9999 60 71.9999H0V87.9999H51.0294C54.5931 87.9999 56.3777 92.3085 53.8579 94.8283L18.3431 130.343L29.6569 141.657L65.1717 106.142C67.684 103.63 71.9745 105.396 72 108.939V160L88.0001 160L88 99.9999C88 93.3725 93.3726 87.9999 100 87.9999H160V71.9999H108.939C105.407 71.9745 103.64 67.7091 106.12 65.1938L106.142 65.1716L141.657 29.6568L130.343 18.3432L94.8284 53.8578Z" fill="currentColor"></path></svg>
+        </a>
+    </section>
+    
+    <main class="anime-slider-main">
+        <div aria-label="Slider" data-gsap-slider-init="" role="region" aria-roledescription="carousel" class="gsap-slider">
+          <h2 class="slider-title">Here are some of my favourite anime movies:</h2>
+          <div data-gsap-slider-collection="" class="gsap-slider__collection">
+            <div data-gsap-slider-list="" class="gsap-slider__list">
+              <!-- Slide 1 - Spirited Away -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0245429/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BNTEyNmEwOWUtYzkyOC00ZTQ4LTllZmUtMjk0Y2YwOGUzYjRiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Spirited Away Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 2 - Princess Mononoke -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0119698/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BNjAzODViNGEtMjBkYi00N2U5LWJjNjAtY2U0MGJhZTEwOTU0XkEyXkFqcGc@._V1_QL75_UX380_CR0,1,380,562_.jpg" alt="Princess Mononoke Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 3 - My Neighbor Totoro -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0096283/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BYWM3MDE3YjEtMzIzZC00ODE5LTgxNTItNmUyMTBkM2M2NmNiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="My Neighbor Totoro Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 4 - Ponyo -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0876563/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BZDkzMzQ5ZmQtOTA3MC00MjhiLTk5M2UtNzk0MjEzZmVjN2UxXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Ponyo Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 5 - Howl's Moving Castle -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0347149/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTY1OTg0MjE3MV5BMl5BanBnXkFtZTcwNTUxMTkyMQ@@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="Howl's Moving Castle Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 6 - The Secret World of Arrietty -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt1568921/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTAxNjk3OTYyODReQTJeQWpwZ15BbWU3MDgyODY2OTY@._V1_QL75_UX380_CR0,0,380,562_.jpg" alt="The Secret World of Arrietty Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+              <!-- Slide 7 - The Cat Returns -->
+              <div data-gsap-slider-item="" class="gsap-slider__item">
+                <a href="https://www.imdb.com/title/tt0347618/" target="_blank" rel="noopener noreferrer">
+                  <div class="demo-card">
+                    <div class="before__125"></div>
+                    <img src="https://m.media-amazon.com/images/M/MV5BNDEwZDkyNWItYzM3OC00N2Q1LTk0YmEtYjIxZWJlNGFjNTE3XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg" alt="The Cat Returns Poster" class="movie-poster">
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div data-gsap-slider-controls="" class="gsap-slider__controls">
+            <button data-gsap-slider-control="prev" class="gsap-slider__control">Prev</button>
+            <button data-gsap-slider-control="next" class="gsap-slider__control">Next</button>
+          </div>
+        </div>
+    </main>
+    
+    <!-- Spacer for background visibility -->
+    <div style="height: 50px; background: none !important; background-color: transparent !important; clear: both; position: relative; z-index: 1;"></div>
+    
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <h2 class="calculator-title">Simple Calculator</h2>
+        <div class="calculator-content">
+            <div class="calculator-wrapper">
+                <div class="container">
+                    <fieldset id="container">
+                        <form name="calculator">
+                            <input id="display" type="text" name="display" readonly>
+
+                        <input class="button digits" type="button" value="7" onclick="calculator.display.value += '7'">
+                        <input class="button digits" type="button" value="8" onclick="calculator.display.value += '8'">
+                        <input class="button digits" type="button" value="9" onclick="calculator.display.value += '9'">
+                        <input class="button mathButtons" type="button" value="+" onclick="calculator.display.value += ' + '">
+                        
+                        <input class="button digits" type="button" value="4" onclick="calculator.display.value += '4'">
+                        <input class="button digits" type="button" value="5" onclick="calculator.display.value += '5'">
+                        <input class="button digits" type="button" value="6" onclick="calculator.display.value += '6'">
+                        <input class="button mathButtons" type="button" value="-" onclick="calculator.display.value += ' - '">
+                        
+                        <input class="button digits" type="button" value="1" onclick="calculator.display.value += '1'">
+                        <input class="button digits" type="button" value="2" onclick="calculator.display.value += '2'">
+                        <input class="button digits" type="button" value="3" onclick="calculator.display.value += '3'">
+                        <input class="button mathButtons" type="button" value="x" onclick="calculator.display.value += ' * '">
+                        
+                        <input id="clearButton" class="button" type="button" value="C" onclick="calculator.display.value = ''">
+                        <input class="button digits" type="button" value="0" onclick="calculator.display.value += '0'">
+                        <input class="button mathButtons" type="button" value="=" onclick="calculator.display.value = eval(calculator.display.value)">
+                        <input class="button mathButtons" type="button" value="/" onclick="calculator.display.value += ' / '">
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div data-css-marquee="" class="marquee-css">
+            <div data-css-marquee-list="" class="marquee-css__list">
+                <div class="marquee-css__item">
+                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
+                </div>
+                <div class="marquee-css__item">
+                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
+                </div>
+                <div class="marquee-css__item">
+                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
+                </div>
+                <div class="marquee-css__item">
+                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
